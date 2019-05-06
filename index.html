@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>HTML To JS String Converter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="clipboard.min.js"></script>
+
+    <link rel="stylesheet" href="bulma.min.css">
+</head>
+
+<body>
+    <br>
+    <div class="is-centered">
+        <h2 class="title">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; HTML to Javascript String Converter</h2>
+    </div>
+    <br>
+    <div class="columns is-centered">
+        <div class="column is-half">
+            <textarea class="textarea" placeholder="Paste your HTML code here" name="sqlserver" id="sqltextarea"
+                cols="30" rows="5"></textarea>
+            <br>
+            <button id="btnConvert" class="button is-success">Create Js String</button>
+            <button id="btnClear" class="button is-danger">Clear</button>
+
+            
+            <br>
+
+            <div style="position: relative;">
+                    <h1 class="title">Output</h1>
+            <textarea class="textarea" name="sqlserver" id="txt-output" cols="30" rows="5"></textarea>
+            <button style="position: absolute; right: 2px; top: 2px;" id="copyBtn" data-clipboard-target="#txt-output"
+                class="button is-info">Copy to Clipboard</button>
+            </div>
+        </div>
+    </div>
+    
+    <div style="text-align: center;">
+        <a href="https://github.com/monsterbrain/html-to-js-string-converter" > visit github page </a>
+    </div>
+
+    <script>
+        new ClipboardJS('#copyBtn');
+        $('#copyBtn').on('click', function () {
+            $('#copyBtn').text("copied!!");
+        });
+        
+        $('#btnClear').on('click', function () {
+            location.reload();
+        });
+
+        $('#btnConvert').on('click', function () {
+            let htmlString = $('#sqltextarea').val();
+
+            // 1. replace < with '<
+            htmlString = htmlString.replace(/^\s*?([\w\<])/gmi, "'$1" );
+            
+            // 2. replace > with >' 
+            htmlString = htmlString.replace(/([\s.\w>])$/gmi, "$1'\+" );
+
+            $('#txt-output').text(htmlString);
+        });
+    </script>
+</body>
+
+</html>
