@@ -16,13 +16,13 @@ convert this html code into
 ```
 
 into this
-
+```
 '<div style="position: relative;">'+
 '<h1 class="title">Output</h1>'+
 '<textarea name="textinput" cols="30" rows="5"></textarea>'+
 '<button>Copy</button>'+
 '</div>'
-
+```
 can be used for appending in javascript along with JQuery etc.
 
 Feel free to post suggestions and other use cases, if any.
